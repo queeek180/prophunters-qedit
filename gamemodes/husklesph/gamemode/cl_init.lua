@@ -1,4 +1,5 @@
 include("shared.lua")
+include("sh_init.lua")
 include("cl_fixplayercolor.lua")
 include("cl_ragdoll.lua")
 include("cl_chatmsg.lua")
@@ -99,10 +100,33 @@ function GM:CalcView(ply, pos, angles, fov)
 			return view
 		end
 	end
+	if IsValid(ply) then
+		if ply:IsPlayer() && ply:Team() == TEAM_PROP && ply:IsDisguised() == false && GAMEMODE.PropInitialThirdperson:GetInt() == 1 then
+			local trace = util.TraceHull{
+				start = pos,
+				endpos = pos - angles:Forward() * 100,
+				filter = { ply:GetActiveWeapon(), ply },
+				mins = Vector( -4, -4, -4 ),
+				maxs = Vector( 4, 4, 4 ),
+			}
+
+			if trace.Hit then
+				pos = trace.HitPos
+			else
+				pos = pos - angles:Forward() * 100
+			end
+
+			return { origin=pos, angles=angles, drawviewer=true }
+		end
+	end
 end
 
-function GM:ShouldDrawLocalPlayer()
-	return false
+function GM:ShouldDrawLocalPlayer(ply)
+	if ply:Team() == TEAM_PROP && GAMEMODE.PropInitialThirdperson:GetInt() == 1 then
+		return true
+	else
+		return false
+	end
 end
 
 net.Receive("hull_set", function(len)
