@@ -93,10 +93,10 @@ end
 function PlayerMeta:CalculateSpeed()
 	-- set the defaults
 	local settings = {
-		walkSpeed = 250,
+		walkSpeed = 200,
 		runSpeed = 50,
 		jumpPower = 200,
-		canRun = true,
+		canRun = false,
 		canMove = true,
 		canJump = true
 	}
@@ -139,12 +139,14 @@ end
 
 function GM:PlayerLoadout(ply)
 	if ply:IsHunter() then
-		ply:Give("weapon_crowbar")
+		ply:Give("weapon_357")
 		ply:Give("weapon_smg1")
 		ply:Give("weapon_shotgun")
-
+		ply:Give("weapon_crowbar")
+		
 		ply:GiveAmmo(45 * 10, "SMG1")
 		ply:GiveAmmo(6 * 10, "buckshot")
+		ply:GiveAmmo(6 * 10, "357")
 		local amo = self.HunterGrenadeAmount:GetInt()
 		if amo > 0 then
 			ply:GiveAmmo(amo, "SMG1_Grenade")
