@@ -24,13 +24,6 @@ For the full list, take a look at the [changelog](CHANGELOG.md), but here is a n
 
 Simply edit the lua files with your preferred text editor!
 
-
-### Code style - Note, I will not be strictly following this but will keep it in mind. They are good guidelines
-
--   C-style operators (`not` -> `!`, `or` -> `||`, `and` -> `&&`).
--   Lua-style comments (`//` -> `--`), so GitHub's formatting doesn't implode.
--   Code must pass glualint.
-
 ## Contributors
 
 -   MechanicalMind (original author)
