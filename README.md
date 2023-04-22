@@ -3,7 +3,7 @@
 This is a fork of [Prop Hunters - Huskle's Edition](https://github.com/zikaeroh/husklesph) which is a fork of [MechanicalMind's Prop Hunters](https://github.com/MechanicalMind/prophunters),
 intended to fix a few bugs, add a few features and tweak things to my liking.
 
-A full changelog can be found in [CHANGELOG.md](CHANGELOG.md).
+Currently, it's pretty minor but going forward I plan on convar-izing everything, overhauling the HUD and generally changing things to my preference
 
 ## Improvements
 
