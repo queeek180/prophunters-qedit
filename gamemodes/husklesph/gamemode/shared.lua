@@ -56,3 +56,9 @@ function GM:PlayerSetHull(ply, hullx, hully, hullz, duckz)
 		-- TODO send on player spawn
 	end
 end
+
+hook.Add('CalcMainActivity', 'PropTpose', function(ply, vel)
+    if ply:Team() == TEAM_PROP && GAMEMODE.PropTpose:GetInt() == 1 && ply:IsDisguised() == false then
+        return ACT_INVALID
+    end
+end)
