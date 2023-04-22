@@ -1,4 +1,4 @@
-"husklesph"
+"prophunters"
 {
 	"base"		"base"
 	"title"		"Prop Hunters - Huskles Edition"
