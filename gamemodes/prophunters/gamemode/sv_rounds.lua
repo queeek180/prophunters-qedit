@@ -180,9 +180,7 @@ function GM:StartRound()
 	end
 
 	self.RoundSettings = {}
-	self.RoundSettings.RoundTime = math.Round((c * 0.5 / hunters + 60 * 4)  * math.sqrt(props / hunters))
 	self.RoundSettings.PropsCamDistance = self.PropsCamDistance:GetFloat()
-	print("Round time is " .. (self.RoundSettings.RoundTime / 60) .. " (" .. c .. " props)")
 	self:NetworkGameSettings()
 	self:SetGameState(ROUND_SEEK)
 	GlobalChatMsg("Round has started")
@@ -221,7 +219,6 @@ function GM:EndRound(winningTeam)
 	net.WriteTable(awards)
 	net.Broadcast()
 
-	self.RoundSettings.NextRoundTime = 15
 	self:NetworkGameSettings()
 	self:SetGameState(ROUND_POST)
 end
@@ -237,8 +234,8 @@ end
 function GM:CheckForVictory()
 	-- Check if time limit expired
 	local settings = self:GetRoundSettings()
-	local roundTime = settings.RoundTime || 5 * 60
-	if self:GetStateRunningTime() > roundTime then
+	local roundTime = GAMEMODE.PostRoundTime:GetInt()
+	if self:GetStateRunningTime() > GAMEMODE.RoundTime:GetInt() then
 		self:EndRound(WIN_PROP)
 		return
 	end
@@ -274,7 +271,7 @@ function GM:RoundsThink()
 			self:SetupRound()
 		end
 	elseif self:GetGameState() == ROUND_HIDE then
-		if self:GetStateRunningTime() > 30 then
+		if self:GetStateRunningTime() > GAMEMODE.PreRoundTime:GetInt() then
 			self:StartRound()
 		end
 	elseif self:GetGameState() == ROUND_SEEK then
@@ -285,7 +282,7 @@ function GM:RoundsThink()
 			end
 		end
 	elseif self:GetGameState() == ROUND_POST then
-		if self:GetStateRunningTime() > (self.RoundSettings.NextRoundTime || 30) then
+		if self:GetStateRunningTime() > (GAMEMODE.PostRoundTime:GetInt()) then
 			if self.RoundLimit:GetInt() > 0 && self.Rounds >= self.RoundLimit:GetInt() then
 				self:StartMapVote()
 			else
