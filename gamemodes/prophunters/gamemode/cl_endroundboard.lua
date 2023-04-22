@@ -123,7 +123,7 @@ local function createEndRoundMenu()
 
 		if GAMEMODE:GetGameState() == ROUND_POST then
 			local settings = GAMEMODE:GetRoundSettings()
-			local roundTime = settings.NextRoundTime || 30
+			local roundTime = GAMEMODE.PostRoundTime:GetInt()
 			local time = math.max(0, roundTime - GAMEMODE:GetStateRunningTime())
 			-- TODO: Say "Mapvote in..." if last round
 			draw.DrawText("Next round in " .. math.ceil(time), "RobotoHUD-15", w - 4, 0, Color(150, 150, 150), 2)
