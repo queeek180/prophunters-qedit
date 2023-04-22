@@ -1,7 +1,7 @@
 "prophunters"
 {
 	"base"		"base"
-	"title"		"Prop Hunters - Huskles Edition"
+	"title"		"Prop Hunters - qEdit"
 	"maps"		"^ph_"
 	"menusystem"	"1"
 	"workshopid"	"1585255351"
