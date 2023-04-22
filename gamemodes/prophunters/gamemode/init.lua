@@ -31,7 +31,6 @@ include("sv_teams.lua")
 include("sv_taunt.lua")
 include("sv_mapvote.lua")
 include("sv_bannedmodels.lua")
-include("sv_version.lua")
 
 resource.AddFile("materials/husklesph/skull.png")
 
