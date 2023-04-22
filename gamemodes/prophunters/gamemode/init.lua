@@ -43,7 +43,6 @@ function GM:Initialize()
 end
 
 function GM:InitPostEntity()
-	self:CheckForNewVersion()
 	self:InitPostEntityAndMapCleanup()
 
 	RunConsoleCommand("mp_show_voice_icons", "0")
