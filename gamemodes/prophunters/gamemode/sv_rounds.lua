@@ -233,7 +233,6 @@ end
 
 function GM:CheckForVictory()
 	-- Check if time limit expired
-	local settings = self:GetRoundSettings()
 	local roundTime = GAMEMODE.PostRoundTime:GetInt()
 	if self:GetStateRunningTime() > GAMEMODE.RoundTime:GetInt() then
 		self:EndRound(WIN_PROP)
